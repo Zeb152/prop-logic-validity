@@ -131,25 +131,14 @@ masterConcNum = masterNum - 1
 
 for i in range(num_rows):
     print('ROW CHECK: ' + str(testingSelected))    
-    if masterList[0][testingSelected] == True or masterList[0][testingSelected] == 1:
+    if bool(masterList[0][testingSelected]) == True:
         if bool(masterList[0][testingSelected]) == bool(masterList[1][testingSelected]):
-            if masterList[2][testingSelected] != True or masterList[2][testingSelected] == 0:
+            if bool(masterList[2][testingSelected]) != True:
                 print('Invalid')
                 testingSelected = testingSelected + 1
                 valid = False
                 break
-            if masterList[2][testingSelected] != True or masterList[2][testingSelected] == 0:
-                print('Invalid')
-                testingSelected = testingSelected + 1
-                valid = False
-                break
-            if masterList[2][testingSelected] == True:
-                print('Valid')
-                testingSelected = testingSelected + 1
-                if testingSelected > listNumRows:
-                    valid = True
-                    break
-            elif masterList[2][testingSelected] == 1:
+            if bool(masterList[2][testingSelected]) == True:
                 print('Valid')
                 testingSelected = testingSelected + 1
                 if testingSelected > listNumRows:
@@ -161,18 +150,13 @@ for i in range(num_rows):
             if testingSelected > listNumRows:
                 break
             continue
-    if masterList[0][testingSelected] != True:
+    if bool(masterList[0][testingSelected]) != True:
         print('Check')
         testingSelected = testingSelected + 1
         if testingSelected > listNumRows:
             break
         continue
-    elif masterList[0][testingSelected] == 0:
-        print('Check')
-        testingSelected = testingSelected + 1
-        if testingSelected > listNumRows:
-            break
-        continue
+
         
 
 #PRINT VALIDITY
