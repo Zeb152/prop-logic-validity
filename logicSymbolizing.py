@@ -16,7 +16,15 @@ from sympy.logic.boolalg import truth_table
 finishedVars = False
 
 variables = []
+masterList = []
+rowList = []
 
+currentSelected = 0
+testingSelected = 0
+
+valid = False
+
+#GET VARIABLESSS
 numberVars = input('How many variables are there: ')
 
 for i in range(int(numberVars)):
@@ -29,22 +37,29 @@ for i in range(int(numberVars)):
 numberOfVars = len(variables)
 
 
+#GET PREMISESSS
+
 premStr = input('How many premises: ')
 premiseNumber = int(premStr)
 
-#for i in range(numberOfVars):
-#    for word in variables:
-#        word = Symbol(word)
-
+#SYMBOLIZE PREMISES
 varsAuto = [Symbol(name) for name in variables]
 
 premList = []
 finishedPrems = False
 
-print('KEY: & - and, | - or, >> - conditional, write Equivalent(a, b) for biconditional')
+print('KEY: & - and, | - or, >> - conditional, === - biconditional')
 
 for i in range(premiseNumber):
     prem = input("Premise: ")
+    if "===" in prem:
+        x, y = prem.split("===")
+        x = x.strip()  # remove leading and trailing whitespaces
+        y = y.strip()  # remove leading and trailing whitespaces
+        new_statement = f"Equivalent({x}, {y})"
+        prem = prem.replace(prem, new_statement)
+        print(prem)
+
    # if prem == 'end':
    #     break
     premLength = len(prem)
@@ -54,76 +69,60 @@ for i in range(premiseNumber):
     premList.append(sympyTrans)
 
 
-masterList = []
+#SYMBOLIZE CONCLUSION
 
 conclusion = input('conclusion: ')
+if "===" in conclusion:
+    x, y = conclusion.split("===")
+    x = x.strip()  # remove leading and trailing whitespaces
+    y = y.strip()  # remove leading and trailing whitespaces
+    new_statement = f"Equivalent({x}, {y})"
+    conclusion = conclusion.replace(conclusion, new_statement)
+    print(conclusion)
 
 concTrans = sympify(conclusion)
-
 premList.append(concTrans)
+masterList.append(concTrans)
 
+
+#get the max number a LIST can interpret of all the premises
 maxList = premiseNumber - 1
 
-currentSelected = 0
 
-rowList = []
-
+#CREATE A TRUTH TABLE
 
 for i in range(premiseNumber):
     for word in premList:
-        #print('CURRENT SELECTED')
         try:
             table = truth_table(premList[currentSelected], variables, False)
         except IndexError as e:
-            #print('QUIT LOOP: ' + str(e))
             break
-
+        #TURN TABLE INTO LIST
         rowList = list(table)
+        #GET LIST LENGTH TO GET NUMBER OF ROWS IN ONE PREMISE
         num_rows = len(rowList)
-
+        #ADD LIST TO MASTER
         masterList.append(rowList)
-        
-        #print(rowList)
-        #print('ROW ' + str(currentSelected) + ' VALUE: ' + str(rowList[0]))
-        #for t in table:
-            #rint(str(premList[currentSelected]) + ':> ' '{0} -> {1}'.format(*t))
         currentSelected = currentSelected + 1
         if currentSelected == maxList:
             break
         
 
-#table = truth_table(premList[0], variables)
-        
-
-        
-#print(masterList)
-#print('CONTECNS: ' + str(masterList[1]))
-
+#get the max number a LIST can interpret of all the rows IN a premise
 listNumRows = num_rows - 1
 
-# Creating a list of lists
-#list_of_lists = [
-#    [1, 2, 3],
-#    ['a', 'b', 'c'],
-#    [True, False, True]
-#]
-#print(list_of_lists[0])  # Output: [1, 2, 3]
-#print(list_of_lists[1][2])  # Output: c
 
-masterList.append(concTrans)
-
+#DEBUG PRINT STATEMENTS
 print('FULL LIST: ' + str(masterList))
-
-testingSelected = 0
-
 print('NUMBER OF ROWS: ' + str(listNumRows))
 
-valid = False
 
+#Find the conclusion by going to the final item in the master list?
 masterNum= len(masterList)
 masterConcNum = masterNum - 1
 
 
+#CHECK FOR VALIDITY
 
 for i in range(num_rows):
     print('ROW CHECK: ' + str(testingSelected))    
@@ -154,26 +153,27 @@ for i in range(num_rows):
         if bool(masterList[0][testingSelected]) != bool(masterList[1][testingSelected]):
             print('Check')
             testingSelected = testingSelected + 1
+            if testingSelected > listNumRows:
+                break
             continue
     if masterList[0][testingSelected] != True:
         print('Check')
         testingSelected = testingSelected + 1
+        if testingSelected > listNumRows:
+            break
         continue
     elif masterList[0][testingSelected] == 0:
         print('Check')
         testingSelected = testingSelected + 1
+        if testingSelected > listNumRows:
+            break
         continue
-        #if testingSelected > 2:
-        #    break
         
 
-print(premList)
-
+#PRINT VALIDITY
 if valid == True:
     print("~ARGUMENT VALID~")
 else:
     print("~ARGUMENT INVALID~")
 
-#for t in table:
-#    print('{0} -> {1}'.format(*t))
 
