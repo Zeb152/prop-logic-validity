@@ -68,6 +68,7 @@ for i in range(premiseNumber):
     if premLength == 1:
         prem = '~~' + prem
     sympyTrans = sympify(prem)
+
     premList.append(sympyTrans)
 
 
@@ -84,7 +85,6 @@ if "===" in conclusion:
 
 concTrans = sympify(conclusion)
 premList.append(concTrans)
-masterList.append(concTrans)
 
 
 #get the max number a LIST can interpret of all the premises
@@ -112,6 +112,9 @@ for i in range(premiseNumber):
 
 #get the max number a LIST can interpret of all the rows IN a premise
 listNumRows = num_rows - 1
+
+#masterList.append(concTrans)
+#print('added ' + str(concTrans) + ' to masterlist')
 
 
 #DEBUG PRINT STATEMENTS
