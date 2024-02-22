@@ -1,13 +1,15 @@
 
-#determine the validity
+#GOAL: determine the validity of any logical propositional arguments
 
 #invalid if premises are true and conclusion is false
 
 #
 #& = and
 #| = or
-#
+#>> = conditional
+#=== = biconditional
 
+#cool API function:
 #sympy.logic.boolalg.POSform(variables, minterms, dontcares=None) -- truth values into symbolization
 
 from sympy import *
