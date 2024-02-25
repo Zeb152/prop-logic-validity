@@ -139,6 +139,8 @@ premiseNumberForList = masterNum - 2
 
 validityInt = 0
 
+breakValidityCheck = False
+
 for i in range(num_rows):
 
     if bool(masterList[0][testingSelected]) == True:
@@ -146,27 +148,50 @@ for i in range(num_rows):
         validityInt = validityInt + 1
 
         for i in range(1, premiseNumberForList + 1):
-            print('i n for loop')
+            print('In for loop')
+
             if bool(masterList[i][testingSelected]) == True:
                 print('BEING TESTED: premise ' + str(i + 1) + ' row ' + str(testingSelected))
                 print(str(i + 1) + ' premise IS true')
-                print('VALIDITY INT: ' + str(validityInt) + '/' + str(premiseNumber))
                 validityInt = validityInt + 1
-                if validityInt == premiseNumber:
+                print('VALIDITY INT: ' + str(validityInt) + '/' + str(premiseNumber))
+
+                #conclusion agrees with premises
+                if validityInt >= premiseNumber:
+                    validityInt = 0
+                    print('validity reset')
                     print('all premises are VALID here!')
                     if bool(masterList[masterConcNum][testingSelected]) == True:
                         print('this whole row is TRUE and VALID')
+                        print('TESTING SELECTED: ' + str(testingSelected) + '\n LIST NUMBER ROWS: ' + str(listNumRows))
+                        if testingSelected >= listNumRows:
+                            valid = True
+                            breakValidityCheck = True
                     elif bool(masterList[masterConcNum][testingSelected]) != True:
                         print('these PREMISES are TRUE but the conclusion is FALSE')
+                        valid = False
+                        breakValidityCheck = True
+
+
             elif bool(masterList[i][testingSelected]) != True:
                 print('BEING TESTED: premise ' + str(i + 1) + ' row ' + str(testingSelected))
                 print(str(i + 1) + ' premise is not true, moving on')
-            
+                validityInt = 0
+                print('validity reset')
+
+            if breakValidityCheck == True:
+                break
+
+
+        validityInt = 0
         testingSelected = testingSelected + 1
 
     elif bool(masterList[0][testingSelected]) != True:
         print('first prem row being checked not true moving on')
         testingSelected = testingSelected + 1
+
+    if breakValidityCheck == True:
+        break
 
 
 
@@ -210,12 +235,9 @@ for i in range(num_rows):
  #           break
  #       continue
 
-        
 
 #PRINT VALIDITY
 if valid == True:
     print("~ARGUMENT VALID~")
 else:
     print("~ARGUMENT INVALID~")
-
-
