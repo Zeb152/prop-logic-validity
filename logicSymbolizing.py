@@ -8,6 +8,7 @@
 #| = or
 #>> = conditional
 #=== = biconditional
+#~ = negation
 
 #cool API function:
 #sympy.logic.boolalg.POSform(variables, minterms, dontcares=None) -- truth values into symbolization
@@ -50,7 +51,7 @@ varsAuto = [Symbol(name) for name in variables]
 premList = []
 finishedPrems = False
 
-print('KEY: & - and, | - or, >> - conditional, === - biconditional')
+print('KEY: & - and, | - or, >> - conditional, === - biconditional, ~ - negation')
 
 for i in range(premiseNumber):
     prem = input("Premise: ")
