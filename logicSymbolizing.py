@@ -113,10 +113,6 @@ for i in range(premiseNumber):
 #get the max number a LIST can interpret of all the rows IN a premise
 listNumRows = num_rows - 1
 
-#masterList.append(concTrans)
-#print('added ' + str(concTrans) + ' to masterlist')
-
-
 #DEBUG PRINT STATEMENTS
 print('FULL LIST: ' + str(masterList))
 print('NUMBER OF ROWS: ' + str(listNumRows))
@@ -226,49 +222,10 @@ for i in range(num_rows):
 
 
 
-#for every row there is in the truth table
-#for i in range(num_rows):
-
-    #print the row number being checked at the moment
- #   print('ROW CHECK: ' + str(testingSelected))    
-
-    #if the first PREMSE's row of the row being checked is true
-#    if bool(masterList[0][testingSelected]) == True:
-
-        #if the first PREMISE's row of being checked is the same as the second PREMISE's row being checked (i.e. if they are both true)
- #       if bool(masterList[0][testingSelected]) == bool(masterList[1][testingSelected]):
-            #check if the conclusion is true or false
- #           if bool(masterList[2][testingSelected]) != True:
- #               print('Invalid')
- #               testingSelected = testingSelected + 1
- #               valid = False
-                #if an argument is T T :. F at any point then it is all invalid, so quit the for loop
- #               break
- #           if bool(masterList[2][testingSelected]) == True:
- #               print('Valid')
- #               testingSelected = testingSelected + 1
-                #an argument could be valid someplace but invalid at another, so unless we are at the last row continue the for loop
- #               if testingSelected > listNumRows:
- #                   valid = True
- #                   break
-        #elif the first PREMISE'S row being checked (which we know is true because of the previous if statement) != the second premise's row being checked's value, just move to the next row (T F)
- #       elif bool(masterList[0][testingSelected]) != bool(masterList[1][testingSelected]):
- #           print('Check')
- #           testingSelected = testingSelected + 1
- #           if testingSelected > listNumRows:
- #               break
- #           continue
-    #if the first premise's row being checked is not true then we cannot determine validity so just check the next row
- #   elif bool(masterList[0][testingSelected]) != True:
- #       print('Check')
- #       testingSelected = testingSelected + 1
- #       if testingSelected > listNumRows:
- #           break
- #       continue
-
-
 #PRINT VALIDITY
 if valid == True:
+    print('\n')
     print("~ARGUMENT VALID~")
 else:
+    print('\n')
     print("~ARGUMENT INVALID~")
