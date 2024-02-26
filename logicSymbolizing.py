@@ -1,4 +1,4 @@
-#Started halfway through class on February 25, 2024.
+#Started halfway through class on February 21, 2024.
 #GOAL: determine the validity of any logical propositional arguments
 
 #invalid if premises are true and conclusion is false
