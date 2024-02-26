@@ -24,7 +24,7 @@ rowList = []
 currentSelected = 0
 testingSelected = 0
 
-valid = False
+valid = True
 
 #GET VARIABLESSS
 numberVars = input('How many variables are there: ')
@@ -129,16 +129,13 @@ masterConcNum = masterNum - 1
 #this is one item behind the conclusion so it is therefore the max number of premises to search
 premiseNumberForList = masterNum - 2
 
-#GET THE CONCLUSION: masterList[masterConcNum]
-
-
-#have to figure out a way to get the number of premises
-#premiseNumber = # of premises
 
 #CHECK FOR VALIDITY
 
+#if the validityInt/the number of premises is, for example, 3/3, the row is valid
 validityInt = 0
 
+#whether to break the validity check for loop
 breakValidityCheck = False
 
 for i in range(num_rows):
@@ -181,7 +178,7 @@ for i in range(num_rows):
                             valid = True
                             breakValidityCheck = True
                     elif bool(masterList[masterConcNum][testingSelected]) != True:
-                        print('these PREMISES are TRUE but the conclusion is FALSE')
+                        print('CAUTION: these PREMISES are TRUE but the conclusion is FALSE')
                         valid = False
                         breakValidityCheck = True
 
@@ -191,6 +188,7 @@ for i in range(num_rows):
                 print(str(i + 1) + ' premise is not true, moving on')
                 validityInt = 0
                 print('validity reset')
+                continue
 
             if breakValidityCheck == True:
                 break
