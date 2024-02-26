@@ -147,6 +147,19 @@ for i in range(num_rows):
         print('first true')
         validityInt = validityInt + 1
 
+        #skip right to the conclusion if there is just one premise
+        if premiseNumber == 1:
+            if bool(masterList[masterConcNum][testingSelected]) == True:
+                    print('this whole row is TRUE and VALID')
+                    print('TESTING SELECTED: ' + str(testingSelected) + '\n LIST NUMBER ROWS: ' + str(listNumRows))
+                    if testingSelected >= listNumRows:
+                        valid = True
+                        breakValidityCheck = True
+            elif bool(masterList[masterConcNum][testingSelected]) != True:
+                print('these PREMISES are TRUE but the conclusion is FALSE')
+                valid = False
+                breakValidityCheck = True
+
         for i in range(1, premiseNumberForList + 1):
             print('In for loop')
 
