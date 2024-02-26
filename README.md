@@ -17,4 +17,5 @@ There are fives types of symbols in propositional logic that are important to kn
 | -- or
 >> -- hypothetical statement (p implies q ; if p then q)
 === -- biconditional (logical equivalence)
+~ -- negation
 ```
