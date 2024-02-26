@@ -15,7 +15,17 @@ There are fives types of symbols in propositional logic that are important to kn
 ```
 & -- and
 | -- or
->> -- hypothetical statement (p implies q ; if p then q)
+>> -- conditional (p implies q ; if p then q)
 === -- biconditional (logical equivalence)
 ~ -- negation
 ```
+
+>The ***and*** operator is only **True** when both variables are True (Ex. P & P - if P is true, the statement is true).
+
+>The ***or*** operator is only **False** when both variables are False (Ex. P | P - if P is false, the statement is false).
+
+>The ***>>*** (conditional) is only **False** when the antecedent variable is True and the consequent variable is False (Ex. P >> Q -- P = true and Q = false, then the statement is false).
+
+> The ***===*** (biconditional) is only **True** when both sides of the statement match (Ex. P === Q - P = true, Q = true, then the statement is true).
+
+> The ***~*** (negation) switches the value of the statement or variable (Ex. ~p - p = true, then the statement is false).
