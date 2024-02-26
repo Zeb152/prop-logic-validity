@@ -8,16 +8,16 @@ pip install sympy
 ```
 
 
-## About
+## Operations
 
 There are fives types of symbols in propositional logic that are important to know in this program.
 
 ```
-& -- and
-| -- or
->> -- conditional (p implies q ; if p then q)
-=== -- biconditional (logical equivalence)
-~ -- negation
+& --> and
+| --> or
+>> --> conditional (p implies q ; if p then q)
+=== --> biconditional (logical equivalence)
+~ --> negation
 ```
 
 >The ***and*** operator is only **True** when both variables are True (Ex. P & P - if P is true, the statement is true).
@@ -29,3 +29,18 @@ There are fives types of symbols in propositional logic that are important to kn
 > The ***===*** (biconditional) is only **True** when both sides of the statement match (Ex. P === Q - P = true, Q = true, then the statement is true).
 
 > The ***~*** (negation) switches the value of the statement or variable (Ex. ~p - p = true, then the statement is false).
+
+## Truth Tables
+
+An argument is **only** invalid if the premises are *all* true and the conclusion is false. A truth table is shown below using the common method for showing validity, Modus Ponens.
+
+| p >> q  | p | :. q |
+| ---- | ---- | ------ |
+| True  | False  | False |
+| True  | False  | True  |
+| False | True   | False |
+| True  | True   | True  |
+
+Because the row that has two true premises (the last row) has a true conclusion, the argument is valid. 
+
+So using this logic, what the program does is bruteforce all possible row's truth values and see if one of them shows that the argument is invalid. If so, the program marks the statement as invalid. Otherwise, it is valid.
