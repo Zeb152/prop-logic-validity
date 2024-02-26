@@ -138,69 +138,89 @@ validityInt = 0
 #whether to break the validity check for loop
 breakValidityCheck = False
 
+#loop for every row there is
 for i in range(num_rows):
+    print('\n')
+    print('ROW ' + str(testingSelected))
 
+    #if the first premise is true then we can determine validity with the other premises - there will always be ONE premise or more
     if bool(masterList[0][testingSelected]) == True:
-        print('first true')
         validityInt = validityInt + 1
 
         #skip right to the conclusion if there is just one premise
         if premiseNumber == 1:
+            #test to see if the conclusion is true because first premise is true
             if bool(masterList[masterConcNum][testingSelected]) == True:
                     print('this whole row is TRUE and VALID')
                     print('TESTING SELECTED: ' + str(testingSelected) + '\n LIST NUMBER ROWS: ' + str(listNumRows))
+
+                    #because this is just one premise the whole argmuent is true
                     if testingSelected >= listNumRows:
                         valid = True
                         breakValidityCheck = True
+            #test to see if the conclusion is false because first premise is true
             elif bool(masterList[masterConcNum][testingSelected]) != True:
                 print('these PREMISES are TRUE but the conclusion is FALSE')
                 valid = False
                 breakValidityCheck = True
+        #break the check before it checks for more because it is just 1 premise and 1 conclusion
 
+        #for MORE THAN 1 PREMISE
+        #note: the range() function for 'for' loops is as follows for the integers inside: (inclusive, exclusive) - hence the reason +1 is added to the premiseNumberForList var
         for i in range(1, premiseNumberForList + 1):
-            print('In for loop')
 
+            #check to see if the first premise is true
             if bool(masterList[i][testingSelected]) == True:
                 print('BEING TESTED: premise ' + str(i + 1) + ' row ' + str(testingSelected))
                 print(str(i + 1) + ' premise IS true')
+                #the validity int is added in order to have a control and make sure that ALL values in one row of premises have been tested. 
+                #cont. it makes sure it doesn't "jump to conclusions" (pun intended) before testing all premises' values.
                 validityInt = validityInt + 1
                 print('VALIDITY INT: ' + str(validityInt) + '/' + str(premiseNumber))
 
-                #conclusion agrees with premises
+                #if all the premises are valid
                 if validityInt >= premiseNumber:
+                    #reset validity number (in order to test another row)
                     validityInt = 0
                     print('validity reset')
                     print('all premises are VALID here!')
+
+                    #check to see if conclusion is true because we know the premises are all true
+                    #premises true, conclusion false = valid
                     if bool(masterList[masterConcNum][testingSelected]) == True:
                         print('this whole row is TRUE and VALID')
-                        print('TESTING SELECTED: ' + str(testingSelected) + '\n LIST NUMBER ROWS: ' + str(listNumRows))
                         if testingSelected >= listNumRows:
                             valid = True
                             breakValidityCheck = True
+                    #premises true, conclusion false = invalid
                     elif bool(masterList[masterConcNum][testingSelected]) != True:
                         print('CAUTION: these PREMISES are TRUE but the conclusion is FALSE')
                         valid = False
                         breakValidityCheck = True
 
-
+            #if one of the premises are not true, just continue because there is no way to prove validity through that row
             elif bool(masterList[i][testingSelected]) != True:
                 print('BEING TESTED: premise ' + str(i + 1) + ' row ' + str(testingSelected))
                 print(str(i + 1) + ' premise is not true, moving on')
                 validityInt = 0
-                print('validity reset')
+                print('RESET VALIDITY')
                 continue
 
+            #if we had gotten an invalid conclusion earlier, this would end the 'for' loop
             if breakValidityCheck == True:
                 break
 
-
+        #reset validity if not already done so
         validityInt = 0
+        #move to the next row
         testingSelected = testingSelected + 1
 
+    #if the first premise is not true just move on because we cant check for validity
     elif bool(masterList[0][testingSelected]) != True:
-        print('first prem row being checked not true moving on')
+        print('[First premise is not True so can\'t check for validity in row ' + str(testingSelected) + ']')
         testingSelected = testingSelected + 1
 
+    #if we had gotten an invalid conclusion earlier, this would end the 'for' loop
     if breakValidityCheck == True:
         break
 
