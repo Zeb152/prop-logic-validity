@@ -16,6 +16,10 @@
 from sympy import *
 from sympy.logic.boolalg import truth_table
 
+import numpy as np
+import pandas as pd
+
+
 finishedVars = False
 
 variables = []
@@ -104,8 +108,15 @@ for i in range(premiseNumber):
         rowList = list(table)
         #GET LIST LENGTH TO GET NUMBER OF ROWS IN ONE PREMISE
         num_rows = len(rowList)
+        
+        #change any values that came out as 0 or 1 to a bool true or false
+        boolRowList = []
+        for item in rowList:
+            booledItem = bool(item)
+            boolRowList.append(booledItem)
+        
         #ADD LIST TO MASTER
-        masterList.append(rowList)
+        masterList.append(boolRowList)
         currentSelected = currentSelected + 1
         if currentSelected == maxList:
             break
@@ -118,6 +129,11 @@ listNumRows = num_rows - 1
 print('FULL LIST: ' + str(masterList))
 print('NUMBER OF ROWS: ' + str(listNumRows))
 
+#lets convert that to numpy array as np.array
+df = pd.DataFrame(masterList, index=[premList])
+transLst = df.transpose()
+
+print(transLst)
 
 #Find the conclusion by going to the final item in the master list?
 masterNum= len(masterList)
@@ -138,7 +154,7 @@ breakValidityCheck = False
 #loop for every row there is
 for i in range(num_rows):
     print('\n')
-    print('ROW ' + str(testingSelected))
+    print('ROW ' + str(testingSelected + 1))
 
     #if the first premise is true then we can determine validity with the other premises - there will always be ONE premise or more
     if bool(masterList[0][testingSelected]) == True:
