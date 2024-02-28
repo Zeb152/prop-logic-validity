@@ -31,11 +31,14 @@ testingSelected = 0
 
 valid = True
 
+print(" ==== LOGICAL PROPOSITION VALIDITY CHECKER ==== \n")
+
+
 #GET VARIABLESSS
-numberVars = input('How many variables are there: ')
+numberVars = input('(Number) Amount of variables in the argument: ')
 
 for i in range(int(numberVars)):
-    symbolizedIn = input("enter variables (one at a time): ")
+    symbolizedIn = input("(letter) Enter your variables - ONE AT A TIME: ").lower()
     if symbolizedIn == 'end':
         break
     variables.append(symbolizedIn)
@@ -46,7 +49,7 @@ numberOfVars = len(variables)
 
 #GET PREMISESSS
 
-premStr = input('How many premises: ')
+premStr = input('(Number) Amount of premises in argument (not including conclusion): ')
 premiseNumber = int(premStr)
 
 #SYMBOLIZE PREMISES
@@ -55,10 +58,10 @@ varsAuto = [Symbol(name) for name in variables]
 premList = []
 finishedPrems = False
 
-print('KEY: & - and, | - or, >> - conditional, === - biconditional, ~ - negation')
+print('\n KEY: \n & - and \n | - or \n >> - conditional \n === - biconditional \n ~ - negation \n')
 
 for i in range(premiseNumber):
-    prem = input("Premise: ")
+    prem = input("Premise " + str(i + 1) + ": ")
     if "===" in prem:
         x, y = prem.split("===")
         x = x.strip()  # remove leading and trailing whitespaces
@@ -79,7 +82,7 @@ for i in range(premiseNumber):
 
 #SYMBOLIZE CONCLUSION
 
-conclusion = input('conclusion: ')
+conclusion = input('Conclusion: ')
 if "===" in conclusion:
     x, y = conclusion.split("===")
     x = x.strip()  # remove leading and trailing whitespaces
@@ -126,8 +129,7 @@ for i in range(premiseNumber):
 listNumRows = num_rows - 1
 
 #DEBUG PRINT STATEMENTS
-print('FULL LIST: ' + str(masterList))
-print('\n')
+print('\n FULL LIST: ' + str(masterList) + '\n')
 print('- TABLE ----------------')
 #lets convert masterList to numpy array as np.array
 df = pd.DataFrame(masterList, index=[premList])
