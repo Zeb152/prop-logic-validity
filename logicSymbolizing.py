@@ -127,15 +127,14 @@ listNumRows = num_rows - 1
 
 #DEBUG PRINT STATEMENTS
 print('FULL LIST: ' + str(masterList))
-print('NUMBER OF ROWS: ' + str(listNumRows))
-
-#lets convert that to numpy array as np.array
+print('\n')
+print('- TABLE ----------------')
+#lets convert masterList to numpy array as np.array
 df = pd.DataFrame(masterList, index=[premList])
 transLst = df.transpose()
-
 print(transLst)
 
-#Find the conclusion by going to the final item in the master list?
+#Find the conclusion by going to the final item in the master list
 masterNum= len(masterList)
 masterConcNum = masterNum - 1
 
