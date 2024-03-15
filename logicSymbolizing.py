@@ -25,13 +25,14 @@ finishedVars = False
 variables = []
 masterList = []
 rowList = []
+alphabetList = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
 currentSelected = 0
 testingSelected = 0
 
 valid = True
 
-print(" ==== LOGICAL PROPOSITION VALIDITY CHECKER ==== \n")
+print("\n ==== LOGICAL PROPOSITION VALIDITY CHECKER ==== \n")
 
 
 #GET VARIABLESSS
@@ -66,7 +67,20 @@ for i in range(premiseNumber):
         x, y = prem.split("===")
         x = x.strip()  # remove leading and trailing whitespaces
         y = y.strip()  # remove leading and trailing whitespaces
+        splitX = x.split()
+        splitY = y.split()
+        print(splitX)
+        print(splitY)
+        for i in splitX:
+            if i in alphabetList:
+                lowercase_letters = i
+        print(lowercase_letters)
+        for i in lowercase_letters:
+            if i in x:
+                newVarX = x.split(i)
+        print(newVarX)
         new_statement = f"Equivalent({x}, {y})"
+        print(new_statement)
         prem = prem.replace(prem, new_statement)
         print(prem)
 
