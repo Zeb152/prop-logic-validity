@@ -16,6 +16,9 @@ pip install numpy
 pip install pandas
 ```
 
+## Quick Personal Usage 
+If you would just like the script to use, just go to the one file (other than the ReadMe) and either download that or copy it into an IDE. If you have installed all the correct libraries, everything should work properly.
+
 ## Operations
 
 There are fives types of symbols in propositional logic that are important to know in this program.
