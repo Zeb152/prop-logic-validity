@@ -8,7 +8,13 @@ The main module used is called **[Sympy](https://www.sympy.org/en/index.html)**.
 ```
 pip install sympy
 ```
-Other modules used include Numpy and Pandas for tables.
+Other modules used include **Numpy** and **Pandas** for tables. So, you will need to run these two commands if you don't have them already on your computer:
+```
+pip install numpy
+```
+```
+pip install pandas
+```
 
 ## Operations
 
