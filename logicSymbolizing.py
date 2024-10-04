@@ -51,7 +51,11 @@ numberOfVars = len(variables)
 #GET PREMISESSS
 
 premStr = input('(Number) Amount of premises in argument (not including conclusion): ')
-premiseNumber = int(premStr)
+try:
+    premiseNumber = int(premStr)
+except:
+    print("Failed to process how many premises the argument has. Please double check that you are entering an integer by itself.")
+    quit()
 
 #SYMBOLIZE PREMISES
 varsAuto = [Symbol(name) for name in variables]
@@ -89,7 +93,11 @@ for i in range(premiseNumber):
     premLength = len(prem)
     if premLength == 1:
         prem = '~~' + prem
-    sympyTrans = sympify(prem)
+    try:
+        sympyTrans = sympify(prem)
+    except Exception as e:
+        print("Fatal error: couldn\'t process premise input. Please double check that your format is correct and try again.")
+        quit()
 
     premList.append(sympyTrans)
 
@@ -169,7 +177,7 @@ breakValidityCheck = False
 #loop for every row there is
 for i in range(num_rows):
     print('\n')
-    print('ROW ' + str(testingSelected + 1))
+    print('ROW ' + str(testingSelected))
 
     #if the first premise is true then we can determine validity with the other premises - there will always be ONE premise or more
     if bool(masterList[0][testingSelected]) == True:
